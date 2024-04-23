@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 public class TestTgbotApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.from(TgbotApplication::main).with(TestTgbotApplication.class).run(args);
+		SpringApplication.run(TgbotApplication.class, args);
 	}
 
 }
