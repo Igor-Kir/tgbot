@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor
 public class BotService extends TelegramLongPollingBot {
     private final CentralRussianBankService centralRussianBankService;
-    private ActiveChatRepository activeChatRepository;
+    private final ActiveChatRepository activeChatRepository;
     private final FinanceService financeService;
 
     private static final String CURRENT_RATES = "/currentrates";
@@ -40,7 +40,7 @@ public class BotService extends TelegramLongPollingBot {
     public void start() {
         log.info("username: {}, token: {}", name, apiKey);
     }
-
+    private Map<Long, List<String>> previousCommands = new ConcurrentHashMap<>();
     @Override
     public String getBotUsername() {
         return name;
@@ -50,7 +50,7 @@ public class BotService extends TelegramLongPollingBot {
     public String getBotToken() {
         return apiKey;
     }
-    private Map<Long, List<String>> previousCommands = new ConcurrentHashMap<>();
+
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
