@@ -25,7 +25,6 @@ public class AppConfig {
         MessageFactory msgFactory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
         SaajSoapMessageFactory newSoapMessageFactory = new SaajSoapMessageFactory(msgFactory);
         cbrService.setMessageFactory(newSoapMessageFactory);
-
         jaxb2Marshaller.setClassesToBeBound(
                 GetCursOnDateXml.class,
                 GetCursOnDateXmlResponse.class,
