@@ -1,5 +1,6 @@
 package ru.skillfactorydemo.tgbot.service;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.skillfactorydemo.tgbot.dto.ValuteCursOnDate;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ScheduleService {
 
     private final ActiveChatRepository activeChatRepository;
@@ -38,7 +40,7 @@ public class ScheduleService {
                 previousRates.addAll(currentRates);
             }
         } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
+            log.error("Возникла проблема при получении данных от сервисов ЦБ РФ", e);
         }
     }
 }
